@@ -1,0 +1,5 @@
+header
+  - if user_signed_in?
+    = link_to "ログアウト", destroy_user_session_path, data: { turbo_method: :delete }, class: 'btn btn-light'
+    = link_to "ポストする", root_path, class: 'btn btn-primary mb-3 mt-3'
+    .btn.btn-primary = current_user.name
