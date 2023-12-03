@@ -38,6 +38,8 @@ ja:
               blank: メールアドレスが空白です
             password:
               blank: パスワードが空白です
+      messages:
+        record_invalid: "バリデーションに失敗しました: %{errors}"
   devise:
     confirmations:
       confirmed: メールアドレスが確認できました。
