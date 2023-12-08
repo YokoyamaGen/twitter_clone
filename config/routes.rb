@@ -4,7 +4,7 @@ Rails.application.routes.draw do
   root to: 'tweets#index'
   devise_for :users,
              controllers: { registrations: 'users/registrations', sessions: 'users/sessions',
-                            confirmations: 'users/confirmations' }
+                            confirmations: 'users/confirmations', omniauth_callbacks: 'users/omniauth_callbacks' }
   devise_scope :user do
     get 'users/confirm_email' => 'users/registrations#confirm_email'
   end

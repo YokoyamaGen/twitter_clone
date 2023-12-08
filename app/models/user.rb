@@ -3,7 +3,26 @@
 class User < ApplicationRecord
   # Include default devise modules. Others available are:
   # :confirmable, :lockable, :timeoutable, :trackable and :omniauthable
+  DEFAULT_BIRTHDAY = '19900101'
+  DEFAULT_TELEPHONE_NUMBER = '080111112222'
+
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :validatable,
-         :confirmable, :lockable, :timeoutable, :trackable
+         :confirmable, :lockable, :timeoutable, :trackable,
+         :omniauthable, omniauth_providers: %i[github]
+  has_many :authorizations, dependent: :destroy
+
+  def self.from_omniauth(auth)
+    authorization = Authorization.find_or_initialize_by(provider: auth.provider, uid: auth.uid)
+    authorization.assign_attributes(name: auth.info.name, email: auth.info.email)
+
+    where(email: auth.info.email).first_or_initialize.tap do |user|
+      password = Devise.friendly_token[0, 20]
+      user.assign_attributes(name: auth.info.name, password:, password_confirmation: password,
+                             confirmed_at: Time.zone.now, birthday: DEFAULT_BIRTHDAY,
+                             telephone_number: DEFAULT_TELEPHONE_NUMBER)
+      user.save!
+      user.authorizations << authorization unless user.authorizations.exists?(provider: auth.provider, uid: auth.uid)
+    end
+  end
 end
