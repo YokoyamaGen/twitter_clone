@@ -54,12 +54,16 @@ gem 'bootsnap', require: false
 # gem "image_processing", "~> 1.2"
 
 gem 'devise'
-gem 'dotenv-rails'
 gem 'slim-rails'
+
+gem 'omniauth'
+gem 'omniauth-github'
+gem 'omniauth-rails_csrf_protection'
 
 group :development, :test do
   # See https://guides.rubyonrails.org/debugging_rails_applications.html#debugging-with-the-debug-gem
   gem 'debug', platforms: %i[mri mingw x64_mingw]
+  gem 'dotenv-rails'
   gem 'factory_bot_rails'
   gem 'rspec-rails'
 end
@@ -69,6 +73,9 @@ group :development do
   gem 'html2slim-ruby3'
   gem 'htmlbeautifier'
   gem 'letter_opener_web'
+  gem 'pry-byebug'
+  gem 'pry-nav'
+  gem 'pry-rails'
   gem 'rails_best_practices'
   gem 'rubocop', require: false
   gem 'rubocop-hc', require: false, github: 'ihatov08/rubocop-hc'
