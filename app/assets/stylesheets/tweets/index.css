@@ -1,0 +1,12 @@
+.form__input {
+  border: none;
+  outline: none;
+}
+
+.form__btn {
+  margin-left: auto;
+}
+
+.nav-link:focus {
+  background-color: #495057 !important;
+}

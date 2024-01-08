@@ -2,13 +2,21 @@ doctype html
 html
   head
     title
-      | Myapp
+      | Xクローン
     meta[name="viewport" content="width=device-width,initial-scale=1"]
     = csrf_meta_tags
     = csp_meta_tag
     = stylesheet_link_tag "application", "data-turbo-track": "reload"
     = javascript_include_tag "application", "data-turbo-track": "reload", defer: true
   body.bg-dark
-    = render partial: 'layouts/flash_message'
-    = render partial: 'layouts/header'
-    = yield
+    - if user_signed_in?
+      .container
+        div.d-flex
+          = render partial: 'layouts/sidebar'
+          div.body
+            = render partial: 'layouts/flash_message'
+            = yield
+    - else
+      = render partial: 'layouts/header'
+      = render partial: 'layouts/flash_message'
+      = yield
