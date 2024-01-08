@@ -15,16 +15,16 @@ SQL
 
 10.times do |i|
   name  = Faker::Name.name
-  email = "example-#{i+1}@railstutorial.org"
-  birthday = Faker::Date.birthday(min_age: 18, max_age: 65).strftime("%Y%m%d")
+  email = "example-#{i + 1}@railstutorial.org"
+  birthday = Faker::Date.birthday(min_age: 18, max_age: 65).strftime('%Y%m%d')
   telephone_number = Faker::PhoneNumber.cell_phone
-  password = "password"
-  user = User.create!(
-    email: email,
-    name: name,
-    birthday: birthday,
-    telephone_number: telephone_number,
-    password: password,
+  password = 'password'
+  User.create!(
+    email:,
+    name:,
+    birthday:,
+    telephone_number:,
+    password:,
     password_confirmation: password,
     confirmed_at: '2023-12-03 02:16:02.309221'
   )
@@ -33,7 +33,7 @@ end
 users = User.order(:created_at)
 21.times do
   tweet = Faker::Lorem.paragraph(sentence_count: 5)
-  users.each { |user| user.tweets.create!(tweet: tweet) }
+  users.each { |user| user.tweets.create!(tweet:) }
 end
 
 users = User.all

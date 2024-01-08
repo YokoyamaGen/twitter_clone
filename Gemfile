@@ -62,17 +62,17 @@ gem 'omniauth-rails_csrf_protection'
 
 gem 'rails-i18n'
 
-gem 'kaminari'
 gem 'bootstrap5-kaminari-views'
+gem 'kaminari'
 
 group :development, :test do
   # See https://guides.rubyonrails.org/debugging_rails_applications.html#debugging-with-the-debug-gem
   gem 'debug', platforms: %i[mri mingw x64_mingw]
   gem 'dotenv-rails'
   gem 'factory_bot_rails'
-  gem 'rspec-rails'
   gem 'faker'
   gem 'gimei'
+  gem 'rspec-rails'
 end
 
 group :development do

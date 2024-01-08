@@ -12,11 +12,11 @@ class User < ApplicationRecord
          :omniauthable, omniauth_providers: %i[github]
   has_many :authorizations, dependent: :destroy
 
-  has_many :user_followers, class_name: 'Follow', foreign_key: 'follower_id'
+  has_many :user_followers, class_name: 'Follow', foreign_key: 'follower_id', dependent: :destroy, inverse_of: :follow
 
-  has_many :followed_users, class_name: 'Follow', foreign_key: 'followed_id'
+  has_many :followed_users, class_name: 'Follow', foreign_key: 'followed_id', dependent: :destroy, inverse_of: :follow
   has_many :followers, through: :followed_users, source: :follower
-  
+
   has_many :tweets, dependent: :destroy
 
   def self.from_omniauth(auth)
