@@ -1,4 +1,4 @@
-= stylesheet_link_tag 'tweets/index', :media => 'all'  
+= stylesheet_link_tag 'tweets/index', :media => 'all'
 
 div.form
   ul class="nav nav-tabs border-end" id="myTab" role="tablist"
@@ -8,12 +8,12 @@ div.form
       button class="nav-link fw-bold w-100" id="profile-tab" data-bs-toggle="tab" data-bs-target="#profile-tab-pane" type="button" role="tab" aria-controls="profile-tab-pane" aria-selected="false" フォロー中
   div.tab-content id="myTabContent"
     div.tab-pane.fade.show.active id="home-tab-pane" role="tabpanel" aria-labelledby="home-tab" tabindex="0"
-      = render partial: 'post_form', locals: { new_tweet: @new_tweet }
+      = render 'post_form', new_tweet: @new_tweet
       = render partial: 'tweet_area', collection: @recommended_tweets, as: "recommended_tweet"
       div.d-flex.justify-content-center.pt-4
        = paginate @recommended_tweets, theme: 'bootstrap-5', pagination_class: "pagination-sm flex-wrap justify-content-center", nav_class: "d-inline-block"
     div class="tab-pane fade" id="profile-tab-pane" role="tabpanel" aria-labelledby="profile-tab" tabindex="0"
-      = render partial: 'post_form', locals: { new_tweet: @new_tweet }
+      = render 'post_form', new_tweet: @new_tweet
       = render partial: 'tweet_area', collection: @follower_tweets, as: "recommended_tweet"
       div.d-flex.justify-content-center.pt-4
        = paginate @follower_tweets, theme: 'bootstrap-5', pagination_class: "pagination-sm flex-wrap justify-content-center", nav_class: "d-inline-block"
