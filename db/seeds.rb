@@ -7,12 +7,39 @@
 #
 #   movies = Movie.create([{ name: "Star Wars" }, { name: "Lord of the Rings" }])
 #   Character.create(name: "Luke", movie: movies.first)
-User.create!(
-  email: 'test@example.com',
-  name: 'テスト',
-  birthday: '19900811',
-  telephone_number: '080111112222',
-  password: 'password',
-  password_confirmation: 'password',
-  confirmed_at: '2023-12-03 02:16:02.309221'
-)
+ActiveRecord::Base.connection.execute <<~SQL.squish
+  TRUNCATE TABLE users RESTART IDENTITY CASCADE;
+  TRUNCATE TABLE tweets RESTART IDENTITY CASCADE;
+  TRUNCATE TABLE follows RESTART IDENTITY CASCADE;
+SQL
+
+10.times do |i|
+  name  = Faker::Name.name
+  email = "example-#{i + 1}@railstutorial.org"
+  birthday = Faker::Date.birthday(min_age: 18, max_age: 65).strftime('%Y%m%d')
+  telephone_number = Faker::PhoneNumber.cell_phone
+  password = 'password'
+  User.create!(
+    email:,
+    name:,
+    birthday:,
+    telephone_number:,
+    password:,
+    password_confirmation: password,
+    confirmed_at: '2023-12-03 02:16:02.309221'
+  )
+end
+
+users = User.order(:created_at)
+21.times do
+  tweet = Faker::Lorem.paragraph(sentence_count: 5)
+  users.each { |user| user.tweets.create!(tweet:) }
+end
+
+users = User.all
+user = User.first
+follower_users = users[1..9]
+
+follower_users.each do |follower_user|
+  user.user_followers.create!(followed_id: follower_user.id)
+end

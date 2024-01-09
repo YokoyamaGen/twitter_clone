@@ -81,6 +81,9 @@ GEM
     bindex (0.8.1)
     bootsnap (1.16.0)
       msgpack (~> 1.2)
+    bootstrap5-kaminari-views (0.0.1)
+      kaminari (>= 0.13)
+      rails (>= 3.1)
     builder (3.2.4)
     byebug (11.1.3)
     capybara (3.39.2)
@@ -121,11 +124,15 @@ GEM
     factory_bot_rails (6.2.0)
       factory_bot (~> 6.2.0)
       railties (>= 5.0.0)
+    faker (3.2.2)
+      i18n (>= 1.8.11, < 2)
     faraday (2.7.12)
       base64
       faraday-net_http (>= 2.0, < 3.1)
       ruby2_keywords (>= 0.0.4)
     faraday-net_http (3.0.2)
+    gimei (1.2.0)
+      romaji
     globalid (1.1.0)
       activesupport (>= 5.0)
     hashie (5.0.0)
@@ -145,6 +152,18 @@ GEM
       railties (>= 6.0.0)
     json (2.6.3)
     jwt (2.7.1)
+    kaminari (1.2.2)
+      activesupport (>= 4.1.0)
+      kaminari-actionview (= 1.2.2)
+      kaminari-activerecord (= 1.2.2)
+      kaminari-core (= 1.2.2)
+    kaminari-actionview (1.2.2)
+      actionview
+      kaminari-core (= 1.2.2)
+    kaminari-activerecord (1.2.2)
+      activerecord
+      kaminari-core (= 1.2.2)
+    kaminari-core (1.2.2)
     language_server-protocol (3.17.0.3)
     launchy (2.5.2)
       addressable (~> 2.8)
@@ -248,6 +267,9 @@ GEM
     rails-html-sanitizer (1.6.0)
       loofah (~> 2.21)
       nokogiri (~> 1.14)
+    rails-i18n (7.0.8)
+      i18n (>= 0.7, < 2)
+      railties (>= 6.0.0, < 8)
     rails_best_practices (1.23.2)
       activesupport
       code_analyzer (~> 0.5.5)
@@ -273,6 +295,8 @@ GEM
       actionpack (>= 5.2)
       railties (>= 5.2)
     rexml (3.2.5)
+    romaji (0.2.4)
+      rake (>= 0.8.0)
     rspec-core (3.12.2)
       rspec-support (~> 3.12.0)
     rspec-expectations (3.12.3)
@@ -378,16 +402,20 @@ PLATFORMS
 
 DEPENDENCIES
   bootsnap
+  bootstrap5-kaminari-views
   capybara
   cssbundling-rails
   debug
   devise
   dotenv-rails
   factory_bot_rails
+  faker
+  gimei
   html2slim-ruby3
   htmlbeautifier
   jbuilder
   jsbundling-rails
+  kaminari
   letter_opener_web
   omniauth
   omniauth-github
@@ -398,6 +426,7 @@ DEPENDENCIES
   pry-rails
   puma (~> 5.0)
   rails (~> 7.0.0)
+  rails-i18n
   rails_best_practices
   rspec-rails
   rubocop
