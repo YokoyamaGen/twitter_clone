@@ -1,0 +1,51 @@
+= stylesheet_link_tag 'users/show', :media => 'all'
+
+div.d-flex.text-white.px-3.fs-5
+  / i class="bi bi-arrow-left header__icon"
+  = link_to root_path, class: "header__icon" do
+    i.bi.bi-arrow-left
+  div.fw-bolder
+    = current_user.name
+div.profile__wrapper
+  img src="#{current_user.header_image}" class="profile__image"
+  img src="#{current_user.icon_image}" class="profile__icon"
+div.profile__container.text-white
+  div.profile__btn-wraper.mb-4
+    = link_to 'プロフィールを編集', root_path, class: "btn btn-outline-light profile__edit-btn"
+  div.fs-5.fw-bold.mb-3
+    = current_user.name
+  div
+    = current_user.self_introduction
+  div.mt-3.d-flex.text-white-50
+    div.d-flex.me-3
+      i.bi.bi-geo-alt.pe-1
+      span
+       = current_user.location
+    div.d-flex.me-3
+      i.bi.bi-link-45deg.pe-1
+      = link_to current_user.website, current_user.website
+    div.d-flex
+      i.bi.bi-balloon.pe-1
+      spna.pe-1
+        | 誕生日:
+      = l current_user.birthday, format: :short
+div.mt-5
+  ul class="nav nav-tabs" id="myTab" role="tablist"
+    li class="nav-item pt-3 w-25" role="presentation"
+      button class="nav-link active fw-bold w-100" id="home-tab" data-bs-toggle="tab" data-bs-target="#home-tab-pane" type="button" role="tab" aria-controls="home-tab-pane" aria-selected="true" ツイート
+    li class="nav-item pt-3 w-25" role="presentation"
+      button class="nav-link fw-bold w-100" id="profile-tab" data-bs-toggle="tab" data-bs-target="#favorite-tab-pane" type="button" role="tab" aria-controls="favorite-tab-pane" aria-selected="false" いいね
+    li class="nav-item pt-3 w-25" role="presentation"
+      button class="nav-link fw-bold w-100" id="profile-tab" data-bs-toggle="tab" data-bs-target="#retweet-tab-pane" type="button" role="tab" aria-controls="retweet-tab-pane" aria-selected="false" リツイート
+    li class="nav-item pt-3 w-25" role="presentation"
+      button class="nav-link fw-bold w-100" id="profile-tab" data-bs-toggle="tab" data-bs-target="#comment-tab-pane" type="button" role="tab" aria-controls="comment-tab-pane" aria-selected="false" コメント
+
+  div.tab-content id="myTabContent"
+    div.tab-pane.fade.show.active id="home-tab-pane" role="tabpanel" aria-labelledby="home-tab" tabindex="0"
+      = render partial: 'tweets/tweet_area', collection: current_user.tweets, as: "recommended_tweet"
+    div class="tab-pane fade" id="favorite-tab-pane" role="tabpanel" aria-labelledby="profile-tab" tabindex="0"
+      = render partial: 'layouts/favorite_tweet', collection: current_user.favorites, as: "favorite_tweet"
+    div class="tab-pane fade" id="retweet-tab-pane" role="tabpanel" aria-labelledby="profile-tab" tabindex="0"
+      = render partial: 'layouts/favorite_tweet', collection: current_user.retweets, as: "favorite_tweet"
+    div class="tab-pane fade" id="comment-tab-pane" role="tabpanel" aria-labelledby="profile-tab" tabindex="0"
+      = render partial: 'layouts/favorite_tweet', collection: current_user.comments, as: "favorite_tweet"
