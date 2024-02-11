@@ -50,16 +50,13 @@ follower_users.each do |follower_user|
 end
 
 last_tweet = Tweet.last
-users.each do |user|
-  user.favorites.create!(tweet_id: last_tweet.id)
+users.each do |favorite_user|
+  favorite_user.favorites.create!(tweet_id: last_tweet.id)
 end
 
 first_tweet = Tweet.first
-users.each do |user|
-  user.retweets.create!(tweet_id: first_tweet.id)
-end
-
-users.each do |user|
+users.each do |retweet_comment_user|
+  retweet_comment_user.retweets.create!(tweet_id: first_tweet.id)
   comment = Faker::Lorem.paragraph(sentence_count: 5)
-  user.comments.create!(tweet_id: last_tweet.id, content: comment)
+  retweet_comment_user.comments.create!(tweet_id: last_tweet.id, content: comment)
 end
