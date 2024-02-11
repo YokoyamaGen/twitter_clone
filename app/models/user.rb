@@ -18,6 +18,9 @@ class User < ApplicationRecord
   has_many :followers, through: :followed_users, source: :follower
 
   has_many :tweets, dependent: :destroy
+  has_many :favorites, dependent: :destroy
+  has_many :retweets, dependent: :destroy
+  has_many :comments, dependent: :destroy
 
   def self.from_omniauth(auth)
     authorization = Authorization.find_or_initialize_by(provider: auth.provider, uid: auth.uid)

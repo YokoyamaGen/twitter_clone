@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2023_12_09_114028) do
+ActiveRecord::Schema[7.0].define(version: 2024_02_11_112116) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
@@ -26,6 +26,25 @@ ActiveRecord::Schema[7.0].define(version: 2023_12_09_114028) do
     t.index ["user_id"], name: "index_authorizations_on_user_id"
   end
 
+  create_table "comments", force: :cascade do |t|
+    t.bigint "user_id"
+    t.bigint "tweet_id"
+    t.text "content", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["tweet_id"], name: "index_comments_on_tweet_id"
+    t.index ["user_id"], name: "index_comments_on_user_id"
+  end
+
+  create_table "favorites", force: :cascade do |t|
+    t.bigint "user_id"
+    t.bigint "tweet_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["tweet_id"], name: "index_favorites_on_tweet_id"
+    t.index ["user_id"], name: "index_favorites_on_user_id"
+  end
+
   create_table "follows", force: :cascade do |t|
     t.bigint "follower_id", null: false
     t.bigint "followed_id", null: false
@@ -33,6 +52,15 @@ ActiveRecord::Schema[7.0].define(version: 2023_12_09_114028) do
     t.datetime "updated_at", null: false
     t.index ["followed_id"], name: "index_follows_on_followed_id"
     t.index ["follower_id"], name: "index_follows_on_follower_id"
+  end
+
+  create_table "retweets", force: :cascade do |t|
+    t.bigint "user_id"
+    t.bigint "tweet_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["tweet_id"], name: "index_retweets_on_tweet_id"
+    t.index ["user_id"], name: "index_retweets_on_user_id"
   end
 
   create_table "tasks", force: :cascade do |t|
@@ -74,6 +102,11 @@ ActiveRecord::Schema[7.0].define(version: 2023_12_09_114028) do
     t.string "telephone_number", default: "", null: false
     t.datetime "birthday", null: false
     t.string "name", default: "", null: false
+    t.string "icon_image"
+    t.string "header_image"
+    t.text "self_introduction"
+    t.string "location"
+    t.string "website"
     t.index ["confirmation_token"], name: "index_users_on_confirmation_token", unique: true
     t.index ["email"], name: "index_users_on_email", unique: true
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
@@ -81,7 +114,13 @@ ActiveRecord::Schema[7.0].define(version: 2023_12_09_114028) do
   end
 
   add_foreign_key "authorizations", "users"
+  add_foreign_key "comments", "tweets"
+  add_foreign_key "comments", "users"
+  add_foreign_key "favorites", "tweets"
+  add_foreign_key "favorites", "users"
   add_foreign_key "follows", "users", column: "followed_id"
   add_foreign_key "follows", "users", column: "follower_id"
+  add_foreign_key "retweets", "tweets"
+  add_foreign_key "retweets", "users"
   add_foreign_key "tweets", "users"
 end

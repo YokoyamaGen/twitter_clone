@@ -26,7 +26,12 @@ SQL
     telephone_number:,
     password:,
     password_confirmation: password,
-    confirmed_at: '2023-12-03 02:16:02.309221'
+    confirmed_at: '2023-12-03 02:16:02.309221',
+    self_introduction: '埼玉県でWEBエンジニアをしております。Rails、Vue.js',
+    location: '埼玉県 さいたま市',
+    icon_image: 'https://3.bp.blogspot.com/-ofY9lgJFb7E/VixB0G8i-DI/AAAAAAAA0FQ/Rgw7dHzGSK8/s800/computer_blindtouch.png',
+    header_image: 'https://nanboya.com/jewelry-kaitori/files/2018/05/purchasecomparison-diamond-ruby-001.jpg',
+    website: 'https://test.jp'
   )
 end
 
@@ -42,4 +47,19 @@ follower_users = users[1..9]
 
 follower_users.each do |follower_user|
   user.user_followers.create!(followed_id: follower_user.id)
+end
+
+last_tweet = Tweet.last
+users.each do |user|
+  user.favorites.create!(tweet_id: last_tweet.id)
+end
+
+first_tweet = Tweet.first
+users.each do |user|
+  user.retweets.create!(tweet_id: first_tweet.id)
+end
+
+users.each do |user|
+  comment = Faker::Lorem.paragraph(sentence_count: 5)
+  user.comments.create!(tweet_id: last_tweet.id, content: comment)
 end
