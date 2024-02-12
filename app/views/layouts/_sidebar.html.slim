@@ -1,4 +1,4 @@
-= stylesheet_link_tag 'layouts/_sidebar', :media => 'all'
+= stylesheet_link_tag 'layouts/tweet_icon', :media => 'all'
 
 .d-flex.ms-5.pe-5.flex-column.flex-shrink-0.p-3.border-end.bg-body-tertiary[style="width: 340px;"]
   a href="/" class="d-flex align-items-center mb-3 mb-md-0 me-md-auto link-body-emphasis text-decoration-none mt-3"
@@ -41,7 +41,7 @@
   hr
   .dropdown.mt-4.mb-3
     a.d-flex.align-items-center.link-body-emphasis.text-decoration-none data-bs-toggle="dropdown" aria-expanded="false"
-      = image_tag(current_user.icon_image, class:"sidebar__icon")
+      = image_tag(current_user.icon_image, class:"tweet__icon")
       strong.text-light
         = current_user.name
       i.bi.bi-three-dots.ms-2.fs-4.text-light
