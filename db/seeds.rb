@@ -11,6 +11,12 @@ ActiveRecord::Base.connection.execute <<~SQL.squish
   TRUNCATE TABLE users RESTART IDENTITY CASCADE;
   TRUNCATE TABLE tweets RESTART IDENTITY CASCADE;
   TRUNCATE TABLE follows RESTART IDENTITY CASCADE;
+  TRUNCATE TABLE comments RESTART IDENTITY CASCADE;
+  TRUNCATE TABLE favorites RESTART IDENTITY CASCADE;
+  TRUNCATE TABLE retweets RESTART IDENTITY CASCADE;
+  TRUNCATE TABLE active_storage_attachments RESTART IDENTITY CASCADE;
+  TRUNCATE TABLE active_storage_blobs RESTART IDENTITY CASCADE;
+  TRUNCATE TABLE active_storage_variant_records RESTART IDENTITY CASCADE;
 SQL
 
 10.times do |i|
@@ -29,8 +35,12 @@ SQL
     confirmed_at: '2023-12-03 02:16:02.309221',
     self_introduction: '埼玉県でWEBエンジニアをしております。Rails、Vue.js',
     location: '埼玉県 さいたま市',
-    icon_image: 'https://3.bp.blogspot.com/-ofY9lgJFb7E/VixB0G8i-DI/AAAAAAAA0FQ/Rgw7dHzGSK8/s800/computer_blindtouch.png',
-    header_image: 'https://nanboya.com/jewelry-kaitori/files/2018/05/purchasecomparison-diamond-ruby-001.jpg',
+    icon_image: ActiveStorage::Blob.create_and_upload!(
+      io: File.open(Rails.root.join('app/assets/images/computer_blindtouch.png')), filename: 'computer_blindtouch'
+    ),
+    header_image: ActiveStorage::Blob.create_and_upload!(
+      io: File.open(Rails.root.join('app/assets/images/ruby.jpeg')), filename: 'ruby'
+    ),
     website: 'https://test.jp'
   )
 end

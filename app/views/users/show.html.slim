@@ -7,8 +7,8 @@ div.d-flex.text-white.px-3.fs-5
   div.fw-bolder
     = current_user.name
 div.profile__wrapper
-  img src="#{current_user.header_image}" class="profile__image"
-  img src="#{current_user.icon_image}" class="profile__icon"
+  = image_tag(current_user.header_image, class:"profile__image")
+  = image_tag(current_user.icon_image, class:"profile__icon")
 div.profile__container.text-white
   div.profile__btn-wraper.mb-4
     = link_to 'プロフィールを編集', root_path, class: "btn btn-outline-light profile__edit-btn"

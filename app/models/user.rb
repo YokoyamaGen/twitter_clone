@@ -22,6 +22,9 @@ class User < ApplicationRecord
   has_many :retweets, dependent: :destroy
   has_many :comments, dependent: :destroy
 
+  has_one_attached :icon_image
+  has_one_attached :header_image
+
   def self.from_omniauth(auth)
     authorization = Authorization.find_or_initialize_by(provider: auth.provider, uid: auth.uid)
     authorization.assign_attributes(name: auth.info.name, email: auth.info.email)
