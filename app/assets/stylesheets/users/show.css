@@ -1,0 +1,52 @@
+.header__icon {
+  width: 56px;
+  height: 53px;
+  color: #fff;
+}
+
+.header__icon:hover {
+  color: #fff;
+}
+
+.profile__image {
+  height: 200px;
+  width: 598px;
+  object-fit: cover;
+}
+
+.profile__container {
+  padding: 12px 16px;
+
+}
+
+.profile__wrapper {
+  width: 598px;
+  position: relative;
+}
+
+.profile__icon {
+  width: 133px;
+  border-bottom-left-radius: 9999px;
+  border-bottom-right-radius: 9999px;
+  border-top-left-radius: 9999px;
+  border-top-right-radius: 9999px;
+  border: 2px solid black;
+  position: absolute;
+  top: 59%;
+  left: 4%;
+  background: #fff;
+}
+
+.profile__edit-btn {
+  font-size: 15px;
+  text-decoration:none;
+  font-weight: 700;
+  border-bottom-left-radius: 9999px;
+  border-bottom-right-radius: 9999px;
+  border-top-left-radius: 9999px;
+  border-top-right-radius: 9999px;
+}
+
+.profile__btn-wraper {
+  text-align: right;
+}

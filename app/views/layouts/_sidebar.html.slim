@@ -1,3 +1,5 @@
+= stylesheet_link_tag 'layouts/tweet_icon', :media => 'all'
+
 .d-flex.ms-5.pe-5.flex-column.flex-shrink-0.p-3.border-end.bg-body-tertiary[style="width: 340px;"]
   a href="/" class="d-flex align-items-center mb-3 mb-md-0 me-md-auto link-body-emphasis text-decoration-none mt-3"
     = image_tag "logo-white.png", size: '30x30'
@@ -27,7 +29,7 @@
         i.bi.bi-twitter.me-2.fs-4
         |  Twitter Blue
     li.nav-item.py-2
-      a.nav-link.fw-bold.text-light.link-body-emphasis[href="#"]
+      a.nav-link.fw-bold.text-light.link-body-emphasis[href="/users/show"]
         i.bi.bi-person.me-2.fs-4
         |  プロフィール
     li.nav-item.py-2
@@ -39,7 +41,7 @@
   hr
   .dropdown.mt-4.mb-3
     a.d-flex.align-items-center.link-body-emphasis.text-decoration-none data-bs-toggle="dropdown" aria-expanded="false"
-      i.bi.bi-person-circle.fs-1.me-3.text-light
+      = image_tag(current_user.icon_image, class:"tweet__icon")
       strong.text-light
         = current_user.name
       i.bi.bi-three-dots.ms-2.fs-4.text-light

@@ -15,6 +15,7 @@ jobs:
         ref: ${{ github.event.pull_request.head.sha }}
     - name: run htmlbeautifier on docker-compose
       run: |
+        echo ${{ secrets.RAILS_MASTER_KEY }} > $GITHUB_WORKSPACE/config/master.key
         docker-compose build
         docker-compose run --rm web bin/setup
         docker-compose run --rm web bin/htmlbeautifier

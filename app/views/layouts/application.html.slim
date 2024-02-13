@@ -13,7 +13,7 @@ html
       .container
         div.d-flex
           = render partial: 'layouts/sidebar'
-          div.body
+          div.body.border-end
             = render partial: 'layouts/flash_message'
             = yield
     - else

@@ -12,7 +12,7 @@ ja:
         name: 名前
         email: メールアドレス
         telephone_number: 電話番号
-        birthday: 生年月日        
+        birthday: 生年月日
         encrypted_password: 暗号化パスワード
         failed_attempts: 失敗したログイン試行回数
         last_sign_in_at: 最終ログイン時刻
@@ -34,7 +34,7 @@ ja:
       models:
         user:
           attributes:
-            email: 
+            email:
               blank: メールアドレスが空白です
             password:
               blank: パスワードが空白です
@@ -161,3 +161,7 @@ ja:
       previous: "&lsaquo; 前"
       next: "次 &rsaquo;"
       truncate: "..."
+  time:
+    formats:
+      default: "%Y/%m/%d %H:%M:%S"
+      short: "%Y年%m月%d日"

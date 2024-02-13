@@ -11,6 +11,12 @@ ActiveRecord::Base.connection.execute <<~SQL.squish
   TRUNCATE TABLE users RESTART IDENTITY CASCADE;
   TRUNCATE TABLE tweets RESTART IDENTITY CASCADE;
   TRUNCATE TABLE follows RESTART IDENTITY CASCADE;
+  TRUNCATE TABLE comments RESTART IDENTITY CASCADE;
+  TRUNCATE TABLE favorites RESTART IDENTITY CASCADE;
+  TRUNCATE TABLE retweets RESTART IDENTITY CASCADE;
+  TRUNCATE TABLE active_storage_attachments RESTART IDENTITY CASCADE;
+  TRUNCATE TABLE active_storage_blobs RESTART IDENTITY CASCADE;
+  TRUNCATE TABLE active_storage_variant_records RESTART IDENTITY CASCADE;
 SQL
 
 10.times do |i|
@@ -26,7 +32,16 @@ SQL
     telephone_number:,
     password:,
     password_confirmation: password,
-    confirmed_at: '2023-12-03 02:16:02.309221'
+    confirmed_at: '2023-12-03 02:16:02.309221',
+    self_introduction: '埼玉県でWEBエンジニアをしております。Rails、Vue.js',
+    location: '埼玉県 さいたま市',
+    icon_image: ActiveStorage::Blob.create_and_upload!(
+      io: File.open(Rails.root.join('app/assets/images/computer_blindtouch.png')), filename: 'computer_blindtouch'
+    ),
+    header_image: ActiveStorage::Blob.create_and_upload!(
+      io: File.open(Rails.root.join('app/assets/images/ruby.jpeg')), filename: 'ruby'
+    ),
+    website: 'https://test.jp'
   )
 end
 
@@ -42,4 +57,16 @@ follower_users = users[1..9]
 
 follower_users.each do |follower_user|
   user.user_followers.create!(followed_id: follower_user.id)
+end
+
+last_tweet = Tweet.last
+users.each do |favorite_user|
+  favorite_user.favorites.create!(tweet_id: last_tweet.id)
+end
+
+first_tweet = Tweet.first
+users.each do |retweet_comment_user|
+  retweet_comment_user.retweets.create!(tweet_id: first_tweet.id)
+  comment = Faker::Lorem.paragraph(sentence_count: 5)
+  retweet_comment_user.comments.create!(tweet_id: last_tweet.id, content: comment)
 end

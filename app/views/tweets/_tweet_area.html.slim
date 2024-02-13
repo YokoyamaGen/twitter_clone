@@ -1,8 +1,9 @@
 = stylesheet_link_tag 'tweets/_tweet_area', :media => 'all'
+= stylesheet_link_tag 'layouts/tweet_icon', :media => 'all'
 
 div.border.text-light.px-4.py-3
   div.d-flex
-    i.bi.bi-person-circle.fs-1.me-3.text-light
+    = image_tag(recommended_tweet.user.icon_image, class:"tweet__icon")
     div.tweet-body
       = recommended_tweet.user.name
       div.my-2
