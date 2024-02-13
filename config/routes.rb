@@ -1,12 +1,13 @@
 # frozen_string_literal: true
 
 Rails.application.routes.draw do
-  get 'users/show'
   root to: 'tweets#index'
   resources :tweets, only: [:index]
   devise_for :users,
              controllers: { registrations: 'users/registrations', sessions: 'users/sessions',
                             confirmations: 'users/confirmations', omniauth_callbacks: 'users/omniauth_callbacks' }
+  resources :users, only: %i[show edit update]
+
   devise_scope :user do
     get 'users/confirm_email' => 'users/registrations#confirm_email'
   end

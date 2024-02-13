@@ -1,0 +1,42 @@
+div[style="width: 618px;"]
+  h2.fs-5.text-light.mt-4.fw-bold.w-75.me-auto.ms-auto
+    | プロフィールを編集
+
+  = form_with model: current_user, url: user_path(current_user), data: { turbo: false }, class: "mt-4 mb-4" do |form|
+    div.w-75.me-auto.ms-auto
+      div.mb-4
+        span.text-secondary
+          | アイコン画像
+        = form.label :icon_image, class: "form-label"
+        = form.file_field :icon_image, class: "form-control"
+      div.mb-4
+        span.text-secondary
+          | ヘッダー画像
+        = form.label :header_image, class: "form-label"
+        = form.file_field :header_image, class: "form-control"
+      div.mb-4
+        span.text-secondary
+          | 名前
+        = form.label :name, class: "form-label"
+        = form.text_field :name, class: "form-control"
+      div.mb-4
+        span.text-secondary
+          | 自己紹介
+        = form.label :self_introduction, class: "form-label"
+        = form.text_field :self_introduction, class: "form-control"
+      div.mb-4
+        span.text-secondary
+          | 場所
+        = form.label :location, class: "form-label"
+        = form.text_field :location, class: "form-control"
+      div.mb-4
+        span.text-secondary
+          | ウェブサイト
+        = form.label :website, class: "form-label"
+        = form.text_field :website, class: "form-control"
+      div.mb-4
+        span.text-secondary
+          | 生年月日
+        = form.label :birthday, class: "form-label"
+        = form.date_field :birthday, class: "form-control"
+      = form.submit "保存", class: "btn btn-primary d-block ms-auto"

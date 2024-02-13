@@ -10,7 +10,7 @@ div.profile__wrapper
   = image_tag(current_user.icon_image, class:"profile__icon")
 div.profile__container.text-white
   div.profile__btn-wraper.mb-4
-    = link_to 'プロフィールを編集', root_path, class: "btn btn-outline-light profile__edit-btn"
+    = link_to 'プロフィールを編集', edit_user_path, class: "btn btn-outline-light profile__edit-btn"
   div.fs-5.fw-bold.mb-3
     = current_user.name
   div
