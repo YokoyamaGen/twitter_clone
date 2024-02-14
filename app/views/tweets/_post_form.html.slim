@@ -6,10 +6,12 @@ div.form-label.px-4.py-5.mb-0.border-bottom
     div.d-flex
       div
         = link_to "/users/show" do
-          = image_tag(current_user.icon_image, class:"tweet__icon")
+          = image_tag(current_user.icon_image, class:"tweet__icon") if current_user.icon_image.attached?
       end
       div.tweet-form
-        = form.text_area :tweet, rows: 1, :placeholder => "いまはどうしている？", size: "30x1", class: "bg-dark border-0 fs-4 text-light form__input mb-5"
+        = form.text_area :tweet, rows: 1, :placeholder => "いまはどうしている？", size: "30x5", maxlength: 140, class: "bg-dark border-0 fs-4 text-light form__input"
         div.d-flex
-          i.bi.bi-image.text-light
+          = form.label :tweet_image
+            i.bi.bi-image.text-light[style="cursor: pointer"]
+            = form.file_field :tweet_image, style: "display: none"
           = form.submit 'ポストする', class: 'btn btn-primary rounded-pill py-2 form__btn'

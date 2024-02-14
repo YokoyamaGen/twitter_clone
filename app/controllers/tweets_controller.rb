@@ -3,10 +3,22 @@
 class TweetsController < ApplicationController
   before_action :authenticate_user!
 
-  def index
+  def new
     @new_tweet = Tweet.new
-    @recommended_tweets = Tweet.all.order(created_at: :desc).includes(:user).page(params[:page])
-    follower_ids = current_user.followers.map(&:id)
-    @follower_tweets = Tweet.where('user_id IN (?)', follower_ids).includes(:user).page(params[:page])
+  end
+
+  def create
+    @new_tweet = Tweet.new(tweet_params)
+    if @new_tweet.save
+      redirect_to tweets_path, notice: 'ツイートを投稿しました'
+    else
+      render 'new', status: :unprocessable_entity
+    end
+  end
+
+  private
+
+  def tweet_params
+    params.require(:tweet).permit(:tweet, :tweet_image).merge(user_id: current_user.id)
   end
 end

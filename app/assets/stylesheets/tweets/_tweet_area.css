@@ -1,3 +1,7 @@
-.tweet-body {
+.tweet-body, .tweet-image {
   width: 500px;
+}
+
+.tweet-image {
+  border-radius: 10px;
 }
