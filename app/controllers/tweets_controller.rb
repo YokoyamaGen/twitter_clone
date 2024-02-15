@@ -2,7 +2,7 @@
 
 class TweetsController < ApplicationController
   before_action :authenticate_user!
-  before_action :fetch_recommended_tweets, only: [:new, :create]
+  before_action :fetch_recommended_tweets, only: %i[new create]
 
   def new
     @new_tweet = Tweet.new
