@@ -2,6 +2,10 @@
   width: 500px;
 }
 
+.tweet-body {
+  white-space: pre-wrap;
+}
+
 .tweet-image {
   border-radius: 10px;
 }
