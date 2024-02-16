@@ -1,8 +1,8 @@
 # frozen_string_literal: true
 
 Rails.application.routes.draw do
-  root to: 'tweets#index'
-  resources :tweets, only: [:index]
+  root to: 'tweets#new'
+  resources :tweets, only: %i[new create]
   devise_for :users,
              controllers: { registrations: 'users/registrations', sessions: 'users/sessions',
                             confirmations: 'users/confirmations', omniauth_callbacks: 'users/omniauth_callbacks' }

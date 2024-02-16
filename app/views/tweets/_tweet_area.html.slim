@@ -8,3 +8,6 @@ div.border.text-light.px-4.py-3
       = recommended_tweet.user.name
       div.my-2
         = recommended_tweet.tweet
+      div
+        - if recommended_tweet.tweet_image.attached?
+          = image_tag(recommended_tweet.tweet_image, class: "tweet-image")
