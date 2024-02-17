@@ -6,7 +6,7 @@ class Tweet < ApplicationRecord
   has_many :retweets, dependent: :destroy
   has_many :comments, dependent: :destroy
 
-  validates :tweet, length: { maximum: 140 }, presence: true
+  validates :content, length: { maximum: 140 }, presence: true
 
   has_one_attached :tweet_image
 
