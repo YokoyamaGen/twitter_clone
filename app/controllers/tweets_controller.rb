@@ -24,7 +24,7 @@ class TweetsController < ApplicationController
   private
 
   def tweet_params
-    params.require(:tweet).permit(:tweet, :tweet_image)
+    params.require(:tweet).permit(:content, :tweet_image)
   end
 
   def fetch_recommended_tweets
