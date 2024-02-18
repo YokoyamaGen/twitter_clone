@@ -38,4 +38,8 @@ class User < ApplicationRecord
       user.authorizations << authorization unless user.authorizations.exists?(provider: auth.provider, uid: auth.uid)
     end
   end
+
+  def already_liked?(like, current_user_id)
+    like.pluck(:user_id).include?(current_user_id)
+  end
 end

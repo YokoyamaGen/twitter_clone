@@ -15,6 +15,7 @@ div.border.text-light.px-4.py-3
       div
         - if @tweet_detail.tweet_image.attached?
           = image_tag(@tweet_detail.tweet_image, class: "tweet-image")
+      = render 'layouts/favorite', tweet: @tweet_detail
 
 = form_with model: [@tweet_detail, fetch_new_comment], data: { turbo: false }, class: "px-4 py-4 border" do |form|
   div.d-flex
