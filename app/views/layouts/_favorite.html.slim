@@ -1,7 +1,7 @@
-div.mt-3.d-flex
+div.d-flex
   - if current_user.already_liked?(tweet.favorites, current_user.id)
       = link_to tweet_favorites_path(tweet), data: { "turbo-method": :delete } do
-        i.bi.bi-heart-fill.text-light
+        i.bi.bi-heart-fill.text-danger
   - else
       = link_to tweet_favorites_path(tweet), data: { "turbo-method": :post } do
         i.bi.bi-heart.text-light
