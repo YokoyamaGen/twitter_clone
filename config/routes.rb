@@ -2,7 +2,9 @@
 
 Rails.application.routes.draw do
   root to: 'tweets#new'
-  resources :tweets, only: %i[new create]
+  resources :tweets, only: %i[new create show] do
+    resources :comments, only: %i[create]
+  end
   devise_for :users,
              controllers: { registrations: 'users/registrations', sessions: 'users/sessions',
                             confirmations: 'users/confirmations', omniauth_callbacks: 'users/omniauth_callbacks' }

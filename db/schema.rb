@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2024_02_11_221535) do
+ActiveRecord::Schema[7.0].define(version: 2024_02_17_071030) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
@@ -101,7 +101,7 @@ ActiveRecord::Schema[7.0].define(version: 2024_02_11_221535) do
 
   create_table "tweets", force: :cascade do |t|
     t.bigint "user_id", null: false
-    t.string "tweet", null: false
+    t.string "content", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["user_id"], name: "index_tweets_on_user_id"

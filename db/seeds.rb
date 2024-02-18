@@ -48,7 +48,7 @@ end
 users = User.order(:created_at)
 21.times do
   tweet = Faker::Lorem.paragraph(sentence_count: 5)
-  users.each { |user| user.tweets.create!(tweet:) }
+  users.each { |user| user.tweets.create!(content: tweet) }
 end
 
 users = User.all
