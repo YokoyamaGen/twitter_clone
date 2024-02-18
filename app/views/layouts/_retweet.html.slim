@@ -1,0 +1,9 @@
+div.ms-5.d-flex
+  - if current_user.already_retweeted?(tweet.retweets, current_user.id)
+    = link_to tweet_retweets_path(tweet), data: { "turbo-method": :delete } do
+      = image_tag "retweet", size: '18x18', class: "mb-1"
+  - else
+    = link_to tweet_retweets_path(tweet), data: { "turbo-method": :post } do
+      = image_tag "retweeted", size: '18x18', class: "mb-1"
+  div.ms-3
+    = tweet.retweets.size

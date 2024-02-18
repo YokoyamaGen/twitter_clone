@@ -42,4 +42,8 @@ class User < ApplicationRecord
   def already_liked?(like, current_user_id)
     like.pluck(:user_id).include?(current_user_id)
   end
+
+  def already_retweeted?(retweet, current_user_id)
+    retweet.pluck(:user_id).include?(current_user_id)
+  end
 end

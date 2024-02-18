@@ -8,4 +8,6 @@ div.border.text-light.px-4.py-3
         = favorite_tweet.tweet.user.name
         div.my-2
           = favorite_tweet.tweet.content
-        = render 'layouts/favorite', tweet: favorite_tweet.tweet
+        div.mt-3.d-flex
+          = render 'layouts/favorite', tweet: favorite_tweet.tweet
+          = render 'layouts/retweet', tweet: favorite_tweet.tweet
