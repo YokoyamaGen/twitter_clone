@@ -1,5 +1,5 @@
 div.ms-5.d-flex
-  - if current_user.already_retweeted?(tweet.retweets, current_user.id)
+  - if current_user.already_retweeted?(tweet.retweets)
     = link_to tweet_retweets_path(tweet), data: { "turbo-method": :delete } do
       = image_tag "retweet.svg", size: '18x18', class: "mb-1"
   - else
