@@ -12,10 +12,13 @@ class Tweet < ApplicationRecord
 
   scope :recent, -> { order(created_at: :desc) }
 
-  scope :recent_with_user, -> { recent.includes(:user).with_attached_tweet_image }
+  scope :recent_with_user, lambda {
+                             recent.includes(:favorites, user: { icon_image_attachment: :blob })
+                                   .with_attached_tweet_image
+                           }
 
   def self.follower_tweets(user)
     follower_ids = user.followers.ids
-    where('user_id IN (?)', follower_ids).includes(:user)
+    where('user_id IN (?)', follower_ids).includes(:favorites, user: { icon_image_attachment: :blob })
   end
 end
