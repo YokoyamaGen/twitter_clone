@@ -9,7 +9,7 @@ div.border.text-light.px-4.py-3
   div.d-flex
     = image_tag(@tweet_detail.user.icon_image, class:"tweet__icon")
     div.tweet-body
-      = @tweet_detail.user.name
+      = render 'layouts/follow_unfollow', tweet: @tweet_detail
       div.my-2
         = @tweet_detail.content
       div
@@ -34,6 +34,6 @@ div.border.text-light.px-4.py-3
     div.d-flex
       = image_tag(comment.user.icon_image, class:"tweet__icon")
       div.tweet-body
-        = comment.user_name
+        = render 'layouts/follow_unfollow', tweet: comment
         div.my-2
           = comment.content

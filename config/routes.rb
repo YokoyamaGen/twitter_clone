@@ -10,7 +10,9 @@ Rails.application.routes.draw do
   devise_for :users,
              controllers: { registrations: 'users/registrations', sessions: 'users/sessions',
                             confirmations: 'users/confirmations', omniauth_callbacks: 'users/omniauth_callbacks' }
-  resources :users, only: %i[show edit update]
+  resources :users, only: %i[show edit update] do
+    resource :follows, only: %i[create destroy]
+  end
 
   devise_scope :user do
     get 'users/confirm_email' => 'users/registrations#confirm_email'

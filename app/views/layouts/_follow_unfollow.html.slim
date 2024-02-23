@@ -1,0 +1,11 @@
+div.d-flex
+  = tweet.user.name
+  - unless current_user.id == tweet.user.id
+    div class="dropdown ms-auto"
+      a class="bi bi-three-dots dropdown-toggle text-white-50 fs-5" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false"
+      ul class="dropdown-menu"
+        li
+          - if current_user.already_followed?(tweet.user)
+            = link_to "#{tweet.user.name}さんのフォローを解除", user_follows_path(tweet.user), data: { "turbo-method": :delete }, class: "dropdown-item"
+          - else
+            = link_to "#{tweet.user.name}さんをフォロー", user_follows_path(tweet.user), data: { "turbo-method": :post }, class: "dropdown-item"
