@@ -22,7 +22,5 @@ class Tweet < ApplicationRecord
     where('user_id IN (?)', follower_ids).includes(:favorites, user: { icon_image_attachment: :blob })
   end
 
-  def user_name
-    user.name
-  end
+  delegate :name, to: :user, prefix: true
 end
