@@ -21,4 +21,8 @@ class Tweet < ApplicationRecord
     follower_ids = user.all_followed.ids
     where('user_id IN (?)', follower_ids).includes(:favorites, user: { icon_image_attachment: :blob })
   end
+
+  def user_name
+    user.name
+  end
 end
