@@ -1,0 +1,7 @@
+div.ms-5.d-flex
+  - if current_user.already_bookmarked?(tweet.bookmarks)
+    = link_to tweet_bookmarks_path(tweet), data: { "turbo-method": :delete } do
+      i.bi.bi-bookmark-fill.mb-1
+  - else
+    = link_to tweet_bookmarks_path(tweet), data: { "turbo-method": :post } do
+      i.bi.bi-bookmark.mb-1

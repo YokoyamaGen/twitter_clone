@@ -3,15 +3,16 @@
 
 div.border.text-light.px-4.py-3
   div.d-flex
-    = image_tag(recommended_tweet.user.icon_image, class:"tweet__icon")
+    = image_tag(tweet.user.icon_image, class:"tweet__icon")
     div.tweet-body
-      = link_to tweet_path(recommended_tweet.id), class: 'text-light text-decoration-none'  do
-        = render 'layouts/follow_unfollow', tweet: recommended_tweet
+      = link_to tweet_path(tweet.id), class: 'text-light text-decoration-none'  do
+        = render 'layouts/follow_unfollow', tweet: tweet
         div.my-2.text-light.text-decoration-none
-          = recommended_tweet.content
+          = tweet.content
         div
-          - if recommended_tweet.tweet_image.attached?
-            = image_tag(recommended_tweet.tweet_image, class: "tweet-image")
+          - if tweet.tweet_image.attached?
+            = image_tag(tweet.tweet_image, class: "tweet-image")
       div.mt-3.d-flex
-        = render 'layouts/favorite', tweet: recommended_tweet
-        = render 'layouts/retweet', tweet: recommended_tweet
+        = render 'layouts/favorite', tweet: tweet
+        = render 'layouts/retweet', tweet: tweet
+        = render 'layouts/bookmark', tweet: tweet
