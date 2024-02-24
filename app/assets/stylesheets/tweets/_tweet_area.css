@@ -9,3 +9,7 @@
 .tweet-image {
   border-radius: 10px;
 }
+
+.dropdown-toggle::after {
+  display: none;
+}

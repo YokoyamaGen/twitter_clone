@@ -18,7 +18,9 @@ class Tweet < ApplicationRecord
                            }
 
   def self.follower_tweets(user)
-    follower_ids = user.followers.ids
+    follower_ids = user.all_followed.ids
     where('user_id IN (?)', follower_ids).includes(:favorites, user: { icon_image_attachment: :blob })
   end
+
+  delegate :name, to: :user, prefix: true
 end

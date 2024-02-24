@@ -1,6 +1,8 @@
 # frozen_string_literal: true
 
 class RetweetsController < ApplicationController
+  before_action :authenticate_user!
+
   def create
     current_user.retweets.create!(tweet_id: params[:tweet_id])
     redirect_back fallback_location: root_path

@@ -5,7 +5,7 @@ div.border.text-light.px-4.py-3
     = image_tag(favorite_tweet.tweet.user.icon_image, class:"tweet__icon")
     div.tweet-body
       = link_to tweet_path(favorite_tweet.tweet.id), class: 'text-light text-decoration-none'  do
-        = favorite_tweet.tweet.user.name
+        = render 'layouts/follow_unfollow', tweet: favorite_tweet.tweet
         div.my-2
           = favorite_tweet.tweet.content
         div

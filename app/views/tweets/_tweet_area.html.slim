@@ -6,7 +6,7 @@ div.border.text-light.px-4.py-3
     = image_tag(recommended_tweet.user.icon_image, class:"tweet__icon")
     div.tweet-body
       = link_to tweet_path(recommended_tweet.id), class: 'text-light text-decoration-none'  do
-        = recommended_tweet.user.name
+        = render 'layouts/follow_unfollow', tweet: recommended_tweet
         div.my-2.text-light.text-decoration-none
           = recommended_tweet.content
         div

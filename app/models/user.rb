@@ -15,7 +15,8 @@ class User < ApplicationRecord
   has_many :user_followers, class_name: 'Follow', foreign_key: 'follower_id', dependent: :destroy, inverse_of: :follower
 
   has_many :followed_users, class_name: 'Follow', foreign_key: 'followed_id', dependent: :destroy, inverse_of: :followed
-  has_many :followers, through: :followed_users, source: :follower
+  has_many :all_followed, through: :user_followers, source: :followed
+  has_many :all_followers, through: :followed_users, source: :follower
 
   has_many :tweets, dependent: :destroy
   has_many :favorites, dependent: :destroy
@@ -45,5 +46,17 @@ class User < ApplicationRecord
 
   def already_retweeted?(retweet)
     retweet.pluck(:user_id).include?(id)
+  end
+
+  def follow(other)
+    all_followed << other
+  end
+
+  def unfollow(other)
+    user_followers.find_by(followed_id: other.id).destroy
+  end
+
+  def already_followed?(followed_user)
+    all_followed.include?(followed_user)
   end
 end
