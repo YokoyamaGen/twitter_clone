@@ -1,0 +1,11 @@
+= stylesheet_link_tag 'bookmarks/index', :media => 'all'
+
+div.px-4.py-4.fs-5.text-light
+  div.fw-bolder
+   | ブックマーク
+div
+  - if @bookmark.any?
+    = render partial: 'tweets/tweet_area', collection: @bookmark.map(&:tweet), as: "tweet"
+  - else
+    div.text-light.px-4.py-3.fw-bolder.bookmark-body
+      | 後で参照できるようにポストを保存する

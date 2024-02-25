@@ -6,7 +6,9 @@ Rails.application.routes.draw do
     resources :comments, only: %i[create]
     resource :favorites, only: %i[create destroy]
     resource :retweets, only: %i[create destroy]
+    resource :bookmarks, only: %i[create destroy]
   end
+  resources :bookmarks, only: %i[index]
   devise_for :users,
              controllers: { registrations: 'users/registrations', sessions: 'users/sessions',
                             confirmations: 'users/confirmations', omniauth_callbacks: 'users/omniauth_callbacks' }

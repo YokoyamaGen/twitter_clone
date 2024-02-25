@@ -22,6 +22,7 @@ class User < ApplicationRecord
   has_many :favorites, dependent: :destroy
   has_many :retweets, dependent: :destroy
   has_many :comments, dependent: :destroy
+  has_many :bookmarks, dependent: :destroy
 
   has_one_attached :icon_image
   has_one_attached :header_image
@@ -58,5 +59,9 @@ class User < ApplicationRecord
 
   def already_followed?(followed_user)
     all_followed.include?(followed_user)
+  end
+
+  def already_bookmarked?(bookmark)
+    bookmark.pluck(:user_id).include?(id)
   end
 end
