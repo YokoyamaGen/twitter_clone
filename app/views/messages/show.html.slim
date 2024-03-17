@@ -14,7 +14,7 @@
 
     div.message-chat#new_message
       - @messages.each do |message|
-        = render partial: 'message', locals: { message: message }
+        = render 'message', message: message
 
     = form_with model: [@other_user, @new_message], data: { turbo_frame: "new_message" }, class: "px-4" do |form|
       div.align-items-center.d-flex

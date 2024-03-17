@@ -4,15 +4,7 @@ class MessagesController < ApplicationController
   before_action :authenticate_user!, :set_used_room
 
   def show
-    room = nil
-
-    if @used_room
-      room = @used_room.room
-    else
-      room = Room.create
-      current_user.user_rooms.create!(room_id: room.id)
-      @other_user.user_rooms.create!(room_id: room.id)
-    end
+    room = Message.check_used_room(current_user, @used_room, @other_user)
 
     @messages = room.messages.order(:created_at)
     @new_message = room.messages.new
