@@ -4,3 +4,4 @@
 //= link_directory ../stylesheets/users .css
 //= link_directory ../stylesheets/layouts .css
 //= link_directory ../stylesheets/bookmarks .css
+//= link_directory ../stylesheets/messages .css

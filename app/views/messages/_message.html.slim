@@ -1,0 +1,6 @@
+- if message.user_id == current_user.id
+    div.bg-primary.px-4.py-2.my-3.my-message
+      = message.content
+- else
+    div.bg-secondary.px-4.py-2.my-3.other-message
+      = message.content

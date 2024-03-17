@@ -1,0 +1,7 @@
+= stylesheet_link_tag 'tweets/_tweet_area', :media => 'all'
+
+= link_to user_messages_path(room_user), class:"text-decoration-none" do
+  div.border.text-light.px-4.py-4.d-flex
+    = image_tag(room_user.icon_image, class:"tweet__icon")
+    = room_user.name
+

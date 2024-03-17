@@ -1,0 +1,37 @@
+.message-body, .message-container {
+  width: 500px;
+}
+
+.message-container {
+  height: 100vh;
+}
+
+.message-chat {
+  height: 83%;
+  overflow-y: scroll;
+}
+
+.my-message, .other-message {
+  width: 50%;
+  border-radius: 10px;
+  overflow-wrap: break-word;
+}
+
+.my-message {
+  margin-left: auto;
+  margin-right: 10px;
+
+}
+
+.other-message {
+  margin-left: 10px;
+}
+
+.form__input {
+  border-radius: 10px;
+  font-size: 20px;
+}
+
+.form__input::placeholder {
+  font-size: 20px;
+}

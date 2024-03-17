@@ -1,0 +1,22 @@
+= stylesheet_link_tag 'tweets/_tweet_area', :media => 'all'
+= stylesheet_link_tag 'messages/show', :media => 'all'
+
+.d-flex.text-white
+  div.py-4.fs-5
+    div.fw-bolder.message-body.ps-4
+      | メッセージ
+    div.mt-4
+      = render partial: 'room_index', collection: fetch_user, as: "room_user"
+  div.message-container.border-start
+    div.fs-5.d-flex.px-4.py-4
+      = image_tag(@other_user.icon_image, class:"tweet__icon")
+      = @other_user.name
+
+    div.message-chat#new_message
+      - @messages.each do |message|
+        = render partial: 'message', locals: { message: message }
+
+    = form_with model: [@other_user, @new_message], data: { turbo_frame: "new_message" }, class: "px-4" do |form|
+      div.align-items-center.d-flex
+        = form.text_area :content, rows: 1, :placeholder => "新しいメッセージを作成", size: "30x1", maxlength: 140, class: "border-0 fs-4 form__input"
+        = form.submit '送信', class: 'btn btn-primary rounded-pill py-2 form__btn'
