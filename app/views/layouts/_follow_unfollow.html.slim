@@ -9,3 +9,5 @@ div.d-flex
             = link_to "#{tweet.user_name}さんのフォローを解除", user_follows_path(tweet.user), data: { "turbo-method": :delete }, class: "dropdown-item"
           - else
             = link_to "#{tweet.user_name}さんをフォロー", user_follows_path(tweet.user), data: { "turbo-method": :post }, class: "dropdown-item"
+        li
+          = link_to "#{tweet.user_name}さんにメッセージ", user_messages_path(tweet.user), class: "dropdown-item"

@@ -14,7 +14,10 @@ Rails.application.routes.draw do
                             confirmations: 'users/confirmations', omniauth_callbacks: 'users/omniauth_callbacks' }
   resources :users, only: %i[show edit update] do
     resource :follows, only: %i[create destroy]
+    resource :messages, only: %i[show create]
   end
+
+  # post 'messages/:room_id', to: 'messages#create', as: 'create_message'
 
   devise_scope :user do
     get 'users/confirm_email' => 'users/registrations#confirm_email'
