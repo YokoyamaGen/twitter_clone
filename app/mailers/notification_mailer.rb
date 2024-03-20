@@ -6,7 +6,7 @@ class NotificationMailer < ApplicationMailer
     @from_user = from_user
     mail(
       subject: 'Xクローンからの通知',
-      from: ENV['SEND_MAIL'],
+      from: ENV['SEND_MAIL'] || 'default-email@example.com',
       to: send_email
     )
   end
