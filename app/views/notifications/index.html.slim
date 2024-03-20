@@ -1,0 +1,8 @@
+= stylesheet_link_tag 'notifications/index', :media => 'all'
+
+div.fs-5.text-white
+  div.fw-bolder.notification-body.ps-4.py-4.border-bottom
+    | 通知
+  div
+    - @all_notifications.each do |notification|
+      = render fetch_page(notification.event_type), notification: notification

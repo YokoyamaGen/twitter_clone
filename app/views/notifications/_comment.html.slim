@@ -1,0 +1,7 @@
+div.py-4.px-4.border
+  div.d-flex
+    = image_tag(notification.event.user.icon_image, class:"tweet__icon")
+  div.mt-4
+    = "#{notification.event.user.name}さんがコメントしました"
+  div.mt-4.text-secondary.notification-tweet-body
+    = notification.event.content
