@@ -17,7 +17,7 @@ Rails.application.routes.draw do
     resource :messages, only: %i[show create]
   end
 
-  # post 'messages/:room_id', to: 'messages#create', as: 'create_message'
+  resources :notifications, only: %i[index]
 
   devise_scope :user do
     get 'users/confirm_email' => 'users/registrations#confirm_email'
