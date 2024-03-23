@@ -15,15 +15,7 @@ module CommonNotification
                  'ポストにいいねしました'
                end
 
-      NotificationMailer.send_mail(action, user_email, user_name).deliver_now
+      NotificationMailer.send_mail(action, tweet.user_email, notification.event.user.name).deliver_now
     end
-  end
-
-  def user_email
-    tweet.user.email
-  end
-
-  def user_name
-    notification.event.user.name
   end
 end
