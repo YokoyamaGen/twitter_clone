@@ -25,4 +25,5 @@ class Tweet < ApplicationRecord
   end
 
   delegate :name, to: :user, prefix: true
+  delegate :email, to: :user, prefix: true
 end

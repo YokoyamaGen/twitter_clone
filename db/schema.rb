@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2024_02_24_111350) do
+ActiveRecord::Schema[7.0].define(version: 2024_03_18_112455) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
@@ -102,6 +102,16 @@ ActiveRecord::Schema[7.0].define(version: 2024_02_24_111350) do
     t.index ["user_id"], name: "index_messages_on_user_id"
   end
 
+  create_table "notifications", force: :cascade do |t|
+    t.bigint "user_id", null: false
+    t.string "event_type"
+    t.bigint "event_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["event_type", "event_id"], name: "index_notifications_on_event"
+    t.index ["user_id"], name: "index_notifications_on_user_id"
+  end
+
   create_table "retweets", force: :cascade do |t|
     t.bigint "user_id"
     t.bigint "tweet_id"
@@ -186,6 +196,7 @@ ActiveRecord::Schema[7.0].define(version: 2024_02_24_111350) do
   add_foreign_key "follows", "users", column: "follower_id"
   add_foreign_key "messages", "rooms"
   add_foreign_key "messages", "users"
+  add_foreign_key "notifications", "users"
   add_foreign_key "retweets", "tweets"
   add_foreign_key "retweets", "users"
   add_foreign_key "tweets", "users"

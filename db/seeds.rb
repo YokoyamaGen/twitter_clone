@@ -14,6 +14,7 @@ ActiveRecord::Base.connection.execute <<~SQL.squish
   TRUNCATE TABLE comments RESTART IDENTITY CASCADE;
   TRUNCATE TABLE favorites RESTART IDENTITY CASCADE;
   TRUNCATE TABLE retweets RESTART IDENTITY CASCADE;
+  TRUNCATE TABLE notifications RESTART IDENTITY CASCADE;
   TRUNCATE TABLE active_storage_attachments RESTART IDENTITY CASCADE;
   TRUNCATE TABLE active_storage_blobs RESTART IDENTITY CASCADE;
   TRUNCATE TABLE active_storage_variant_records RESTART IDENTITY CASCADE;
@@ -59,11 +60,15 @@ follower_users.each do |follower_user|
   user.user_followers.create!(followed_id: follower_user.id)
 end
 
-last_tweet = Tweet.last
+all_tweets = Tweet.all
+part_tweets = all_tweets[0..9]
 users.each do |favorite_user|
-  favorite_user.favorites.create!(tweet_id: last_tweet.id)
+  part_tweets.each do |part_tweet|
+    favorite_user.favorites.create!(tweet_id: part_tweet.id) unless part_tweet.user.id == favorite_user.id
+  end
 end
 
+last_tweet = Tweet.last
 first_tweet = Tweet.first
 users.each do |retweet_comment_user|
   retweet_comment_user.retweets.create!(tweet_id: first_tweet.id)

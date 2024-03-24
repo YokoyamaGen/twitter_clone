@@ -5,3 +5,4 @@
 //= link_directory ../stylesheets/layouts .css
 //= link_directory ../stylesheets/bookmarks .css
 //= link_directory ../stylesheets/messages .css
+//= link_directory ../stylesheets/notifications .css
