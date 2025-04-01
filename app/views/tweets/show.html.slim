@@ -32,7 +32,7 @@ div.border.text-light.px-4.py-3
 - @tweet_detail.comments.each do |comment|
   div.border.text-light.px-4.py-3
     div.d-flex
-      = image_tag(comment.user.icon_image, class:"tweet__icon")
+      / = image_tag(comment.user.icon_image, class:"tweet__icon")
       div.tweet-body
         = render 'layouts/follow_unfollow', tweet: comment
         div.my-2

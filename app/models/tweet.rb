@@ -20,7 +20,7 @@ class Tweet < ApplicationRecord
 
   def self.follower_tweets(user)
     follower_ids = user.all_followed_ids
-    where('user_id IN (?)', follower_ids).includes(:favorites, :retweets, :bookmarks,
+    where('user_id IN (?)', follower_ids).preload(:favorites, :retweets, :bookmarks,
                                                    user: { icon_image_attachment: :blob })
   end
 

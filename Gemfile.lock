@@ -264,6 +264,8 @@ GEM
       nio4r (~> 2.0)
     racc (1.7.1)
     rack (2.2.7)
+    rack-mini-profiler (3.3.1)
+      rack (>= 1.2.0)
     rack-protection (3.1.0)
       rack (~> 2.2, >= 2.2.4)
     rack-test (2.1.0)
@@ -371,6 +373,8 @@ GEM
       rubyzip (>= 1.2.2, < 3.0)
       websocket (~> 1.0)
     sexp_processor (4.17.0)
+    skylight (6.0.4)
+      activesupport (>= 5.2.0)
     slim (5.2.0)
       temple (~> 0.10.0)
       tilt (>= 2.1.0)
@@ -452,6 +456,7 @@ DEPENDENCIES
   pry-nav
   pry-rails
   puma (~> 5.0)
+  rack-mini-profiler
   rails (~> 7.0.0)
   rails-i18n
   rails_best_practices
@@ -461,6 +466,7 @@ DEPENDENCIES
   rubocop-rails
   rubocop-rspec
   selenium-webdriver
+  skylight
   slim-rails
   sprockets-rails
   stimulus-rails
