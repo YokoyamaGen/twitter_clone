@@ -4,7 +4,7 @@ class BookmarksController < ApplicationController
   before_action :authenticate_user!
 
   def index
-    @bookmark = current_user.bookmarks.includes(:tweet).recent
+    @bookmark = current_user.bookmarks.eager_load(:tweet).recent
   end
 
   def create

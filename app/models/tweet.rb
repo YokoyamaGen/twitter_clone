@@ -14,7 +14,7 @@ class Tweet < ApplicationRecord
   scope :recent, -> { order(created_at: :desc) }
 
   scope :recent_with_user, lambda {
-                             recent.includes(:favorites, :retweets, :bookmarks, user: { icon_image_attachment: :blob })
+                             recent.eager_load(:favorites, :retweets, :bookmarks, user: { icon_image_attachment: :blob })
                                    .with_attached_tweet_image
                            }
 
