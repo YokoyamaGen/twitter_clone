@@ -95,6 +95,7 @@ group :development do
   gem 'web-console'
   gem 'rack-mini-profiler', require: false
   gem "skylight"
+  gem 'activerecord-import'
 
   # Add speed badges [https://github.com/MiniProfiler/rack-mini-profiler]
   # gem "rack-mini-profiler"
